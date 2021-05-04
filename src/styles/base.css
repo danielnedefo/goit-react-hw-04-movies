@@ -1,0 +1,14 @@
+.NavUL{
+  list-style: none;
+  display: flex;
+  justify-content: center;
+}
+.NavLink{
+font-size: 20px;
+  color:currentColor;
+  margin-right: 10px;
+  text-decoration: none;
+}
+.NavLink--active{
+  color: red;
+}
