@@ -25,32 +25,6 @@ class MovieDetailsPage extends Component{
     }
     
   }
-  // original_name,profile_path
-  // renderActors = () => {
-  //   const actors = this.fetchActorsForFilm()
-  //     .then(data => {
-  //       {
-  //         const mainActors = data.slice(0, 5)
-  //         const { name, profile_path } = mainActors
-  //         const avatar = "https://image.tmdb.org/t/p/w500/" + profile_path
-  //         return (
-  //           <>
-  //             <li>
-  //               <img src={avatar} alt={name} />
-  //               <p>{name}</p>
-  //             </li>
-  //             </>
-  //       )
-  //       }
-        
-  //     })
-  //  return actors
-  //   // const actor = actors.map(actors => console.log(actors))
-  // }
-   
-  
-  // backdrop_path,budget,genres(arr),original_title,overview,vote_average,production_companies(arr),
-  // release_date,production_countries(arr)
  async fetchFilmAdditionalInfo () {
     const enpointForAdditionalInfo = filmAdditionalInfo(this.state.filmId)
     const fullFilmInfo = await axios.get(enpointForAdditionalInfo, { params: { api_key: apiKey } })
@@ -80,11 +54,19 @@ class MovieDetailsPage extends Component{
      }
    })
   }
+  handleGoBack = () => {
+    const { location, history } = this.props
+    if(location.state && location.state.from){
+      return history.push(location.state.from)
+    }
+    history.push("/")
+  }
   render() {
+    console.log(this.props.location)
     const {film,filmId} = this.state
     return (
       <>
-        
+        <button type="button" onClick={this.handleGoBack}>Go back</button>
         <DetailsCard  id={filmId} film={film}/>
         
         {/* <h2>Movie Details {this.props.match.params.id}</h2> */}

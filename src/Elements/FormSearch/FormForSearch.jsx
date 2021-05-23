@@ -14,10 +14,18 @@ class FormSearch extends Component {
       }
     })
   }
+  resetQuery = () => {
+    this.setState(({ query }) => {
+      return {
+        query:""
+      }
+    })
+  }
   onSubmit = (e) => {
     e.preventDefault()
     const { onSubmitForm } = this.props
     onSubmitForm(this.state.query)
+    this.resetQuery()
   }
   idForm = 'kfsada'
   render() {
@@ -26,7 +34,7 @@ class FormSearch extends Component {
       <>
       <form onSubmit={onSubmit}>
         <label htmlFor={this.idForm}>Search Film</label>
-        <input name="query" onChange={handleQuery} id={this.idForm}></input>
+        <input value={this.state.query} name="query" onChange={handleQuery} id={this.idForm}></input>
         <button type="submit">Search</button>
     </form>
     </>

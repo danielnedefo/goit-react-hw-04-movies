@@ -15,7 +15,7 @@ class SearchFilms extends Component{
     this.fetchGenresOfFilms()
   }
   componentWillUnmount() {
-    console.log(this.state.films)
+    // console.log(this.state.films)
   }
   async fetchTrendingFilms() {
     const genres = await this.fetchGenresOfFilms()
@@ -23,7 +23,7 @@ class SearchFilms extends Component{
      const req = await axios.get(trending,{params:{page: this.state.page,api_key:apiKey}})
        .then(({ data }) => {
          const { results } = data
-         console.log(results)
+        //  console.log(results)
          const everyFilm = results.map(({ name,first_air_date,backdrop_path, genre_ids, id, original_title, vote_average, release_date }) => {
            const genre = genre_ids.map(id => {
             return genres[id]
